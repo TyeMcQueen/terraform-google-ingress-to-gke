@@ -17,10 +17,9 @@ and power, including multi-region support.
 * [Limitations](#limitations)
 * [Input Variables](#input-variables)
 
-If you are viewing this in the Terraform Registry, many of the links
-will be broken.  Instead, view the original source,
-https://github.com/TyeMcQueen/terraform-google-ingress-to-gke, to
-get a version with all links working.
+This module is not yet in any Terraform module registry.  We plan to
+register it but are focusing on the first users and also increasing
+test coverage before that.
 
 
 ## Simplest Example
