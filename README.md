@@ -25,11 +25,11 @@ test coverage before that.
 ## Simplest Example
 
 First, let's see how simple this module can be to use.  This invocation
-of the module configures global HTTP and HTTPS load balancing to a
-Kubernetes Workload running in 3 regional GKE Clusters using a "Classic"
-load-balancer-authorized SSL certificate (including allocating a health
-check and an IP address and arranging for http:// requests to be redirected
-to https://, but not setting up DNS records for it).
+of the module configures global HTTPS load balancing to a Kubernetes Workload
+running in 3 regional GKE Clusters using a "Classic" load-balancer-authorized
+SSL certificate (including allocating a health check and an IP address and
+arranging for http:// requests to be redirected to https://, but not setting
+up DNS records for it).
 
     module "my-ingress" {
       source            = (
@@ -106,7 +106,7 @@ immediately and without having to search for details about what went wrong.
 You can use GCP's new Cloud Certificate Manager to create a certificate
 map which provides more reliability and security benefits and can auto-renew
 even wildcard certs.  See the [certificate-map-simple module](
-https://github.com/TyeMcQueen/terraform-google-certificate-map-simple) for
+https://github.com/TyeMcQueen/terraform-google-certificate-map-simple)⧉ for
 more about these benefits.
 
 ### More Flexibility
@@ -152,7 +152,7 @@ And `reject-honeypot` means requests that use the honeypot hostname will
 not even be routed to your Workload.
 
 The [certificate-map-simple module](
-https://github.com/TyeMcQueen/terraform-google-certificate-map-simple)
+https://github.com/TyeMcQueen/terraform-google-certificate-map-simple)⧉
 that this module uses fully documents these additional benefits.
 
 ### Avoiding Nested Modules
@@ -161,14 +161,14 @@ This module is mostly just a convenient wrapper around two other modules,
 one of which can invoke a third module.
 
 * [backend-to-gke](
-    https://github.com/TyeMcQueen/terraform-google-backend-to-gke) - Creates
+    https://github.com/TyeMcQueen/terraform-google-backend-to-gke)⧉ - Creates
     the Backend Service that routes to the Network Endpoint Groups that GKE
     manages for your workload
 * [http-ingress](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress) - Assembles
+    https://github.com/TyeMcQueen/terraform-google-http-ingress)⧉ - Assembles
     all of the load balancing pieces together
 * [certificate-map-simple](
-    https://github.com/TyeMcQueen/terraform-google-certificate-map-simple) -
+    https://github.com/TyeMcQueen/terraform-google-certificate-map-simple)⧉ -
     Called by http-ingress to create the Cloud Certificate Manager resources
 
 The above example is the same as the following example where the use of the
@@ -245,11 +245,11 @@ you full control over your infrastructure.  We encourage you to start with
 one of the simple examples (above) and customize that as needed.  If you
 try to look at all of the possible options, it is easy to be overwhelmed.
 
-Most aspects of the module are documented from multiple angles (and
-some of the linked documentation is from the other modules).  When
+Most aspects of the module are documented from multiple angles (and some of
+the linked documentation is from the other modules, marked with ⧉).  When
 you are ready to customize, you should probably start with the [Usage](
-#usage) documentation.  Depending on what angle you want to look
-from, you can also look at any of these lists:
+#usage) documentation.  Depending on what angle you want to look from, you
+can also look at any of these lists:
 
 * [What infrastructure can be created](#infrastructure-created)
 * Input [variables.tf](/variables.tf) or the [sorted list of links](
@@ -262,13 +262,13 @@ from, you can also look at any of these lists:
 
 * [Multiple Clusters](#multiple-clusters)
 * [Option Toggles](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Usage.md#option-toggles)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Usage.md#option-toggles)⧉
 * [Certificate Types](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Usage.md#certificate-types)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Usage.md#certificate-types)⧉
 * [Hostnames](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Usage.md#hostnames)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Usage.md#hostnames)⧉
 * [Major Options](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Usage.md#major-options)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Usage.md#major-options)⧉
 
 ### Multiple Clusters
 
@@ -310,36 +310,36 @@ succeed).
 ## Infrastructure Created
 
 * [Backend Service](
-    https://github.com/TyeMcQueen/terraform-google-backend-to-gke#backend-service)
+    https://github.com/TyeMcQueen/terraform-google-backend-to-gke#backend-service)⧉
 * [Health Check](
-    https://github.com/TyeMcQueen/terraform-google-backend-to-gke#health-check)
+    https://github.com/TyeMcQueen/terraform-google-backend-to-gke#health-check)⧉
 * [IP Address](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#ip-address)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#ip-address)⧉
 * [Classic SSL Certificates](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#classic-ssl-certificates)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#classic-ssl-certificates)⧉
 * [Modern SSL Certificates](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#modern-ssl-certificates)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#modern-ssl-certificates)⧉
 * [DNS `A` Records](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#dns-a-records)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#dns-a-records)⧉
 * [Target Proxies, Forwarding Rules](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#target-proxies-forwarding-rules)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#target-proxies-forwarding-rules)⧉
 * [Redirect URL Map](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#redirect-url-map)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#redirect-url-map)⧉
 * [Main URL Map](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#main-url-map)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Created.md#main-url-map)⧉
 
 
 ## Limitations
 
 * [Google Providers](#google-providers)
 * [Beware of Deletions](
-    https://github.com/TyeMcQueen/terraform-google-certificate-map-simple/#deletions)
+    https://github.com/TyeMcQueen/terraform-google-certificate-map-simple/#deletions)⧉
 * [Error Handling](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Limitations.md#error-handling)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Limitations.md#error-handling)⧉
 * [Unused Resource Types](
-    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Limitations.md#unused-resource-types)
+    https://github.com/TyeMcQueen/terraform-google-http-ingress/blob/main/docs/Limitations.md#unused-resource-types)⧉
 * [Handling Cluster Migration](
-    https://github.com/TyeMcQueen/terraform-google-backend-to-gke#handling-cluster-migration)
+    https://github.com/TyeMcQueen/terraform-google-backend-to-gke#handling-cluster-migration)⧉
 
 ### Google Providers
 
