@@ -1,7 +1,7 @@
 
 output "be" {
-    description = "All outputs from the backend-to-gke module invocation"
-    value       = module.backend
+    description = "A 0- or 1-entry list of all backend-to-gke module outputs"
+    value       = [ module.backend ]
 }
 
 output "lb" {
@@ -11,17 +11,17 @@ output "lb" {
 
 output "backend" {
   description = "A 0- or 1-entry list of Backend Service resource created"
-  value       = [ for be in module.backend : be.backend ]
+  value       = module.backend.backend
 }
 
 output "health" {
   description = "A 0- or 1-entry list of Health Check resource created"
-  value       = flatten([ for be in module.backend : be.health ])
+  value       = module.backend.health
 }
 
 output "negs" {
   description = "A map from Compute Zone names to the NEG resource records"
-  value       = 0 < length(module.backend) ? module.backend[0].negs : {}
+  value       = module.backend.negs
 }
 
 output "keys" {

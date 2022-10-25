@@ -17,7 +17,6 @@ locals {
 }
 
 module "backend" {
-  count                 = "" != var.lb-scheme ? 1 : 0
   source                = (
     "github.com/TyeMcQueen/terraform-google-backend-to-gke" )
   cluster-objects       = var.cluster-objects
@@ -46,7 +45,7 @@ module "ingress" {
   source                = (
     "github.com/TyeMcQueen/terraform-google-http-ingress" )
   backend-ref           = (
-    0 < length(module.backend) ? module.backend[0].backend.id : "" )
+    0 < length(module.backend.backend) ? module.backend.backend[0].id : "" )
   bad-host-backend      = var.bad-host-backend
   bad-host-code         = var.bad-host-code
   bad-host-host         = var.bad-host-host
