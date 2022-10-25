@@ -483,6 +483,68 @@ variable "max-rps-per" {
   default       = 1000
 }
 
+variable "timeout-secs" {
+  description   = <<-EOD
+    The maximum number of seconds that load balancing will wait to receive a
+    full response from your Workload.  You should set this value to be longer
+    than you expect your Workload to ever reasonably take to respond.  Taking
+    longer than this time will, unfortunately, cause load balancing to retry
+    the request.  A retry can be useful in some situations, but retrying
+    after a long timeout is a terrible idea (bad for user experience and
+    likely just adds useless extra load to a Workload that may be responding
+    slowly because it is overloaded).  You should also implement your own
+    timeout in your Workload that is shorter than this value.
+  EOD
+  type          = number
+  default       = 30
+}
+
+variable "security-policy" {
+  description   = <<-EOD
+    The `.id` of a Cloud Armor security policy to apply to your Workload.
+
+    Example: security-policy = google_compute_security_policy.my-api.id
+  EOD
+  type          = string
+  default       = ""
+}
+
+variable "session-affinity" {
+  description   = <<-EOD
+    Defaults to "NONE".  Can be set to "CLIENT_IP" to use a best-effort
+    session affinity based on the client's IP address.
+  EOD
+  type          = string
+  default       = "NONE"
+
+  validation {
+    condition       = (
+      var.session-affinity == "NONE" || var.session-affinity == "CLIENT_IP" )
+    error_message   = "Must be \"NONE\" or \"CLIENT_IP\"."
+  }
+}
+
+variable "iap-id" {
+  description   = <<-EOD
+    The OAuth2 Client ID required for Identity-Aware Proxy.  Setting this
+    causes IAP to be enabled.
+
+    Example: iap-id = google_iap_client.my-api.client_id
+  EOD
+  type          = string
+  default       = ""
+}
+
+variable "iap-secret" {
+  description   = <<-EOD
+    The OAuth2 Client Secret required for Identity-Aware Proxy.
+
+    Example: iap-secret = google_iap_client.my-api.secret
+  EOD
+  type          = string
+  default       = ""
+}
+
 
 ###--- HTTPS proxy options ---###
 

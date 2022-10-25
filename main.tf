@@ -31,6 +31,11 @@ module "backend" {
   lb-scheme             = var.lb-scheme
   log-sample-rate       = var.log-sample-rate
   max-rps-per           = var.max-rps-per
+  timeout-secs          = var.timeout-secs
+  security-policy       = var.security-policy
+  session-affinity      = var.session-affinity
+  iap-id                = var.iap-id
+  iap-secret            = var.iap-secret
   name-prefix           = local.prefix
   neg-name              = var.neg-name
   project               = var.project
