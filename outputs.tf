@@ -39,6 +39,11 @@ output "ip" {
   value       = module.ingress.ip
 }
 
+output "ip-addr" {
+  description = "The IP address used for the ingress"
+  value       = module.ingress.ip-addr
+}
+
 output "f80" {
   description = (
     "A 0- or 1-entry list of port-80 Forwarding Rule resource created" )
