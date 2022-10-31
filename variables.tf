@@ -586,8 +586,8 @@ variable "http-redir-code" {
   description   = <<-EOD
     The status code used when redirecting http:// requests to https://.  Only
     used if you leave `redirect-http` as `true` and create or reference at
-    least one SSL certificate.  It can be 301, 302, 303, 307, or 308.  307 is
-    the default as mistakenly enabling the redirect using 308 can have
+    least one SSL certificate.  It can be 301, 302, 303, 307, or 308.  307
+    is the default as mistakenly enabling the redirect using 308 can have
     long-lasting impacts that cannot be easily reverted.  Using any value
     other than 307 or 308 may cause the HTTP method to change to "GET".
   EOD
@@ -605,16 +605,15 @@ variable "http-redir-code" {
 
 ###--- URL map options ---###
 
-variable "reject-honeypot" {
+variable "exclude-honeypot" {
   description   = <<-EOD
     Set to `true` to not forward to your Backend any requests sent to the
     "honeypot" (first) hostname.  This can only work when there are at
     least 2 entries in `hostnames` and `url-map-ref` is not "".  If
     `lb-scheme` is left as "EXTERNAL_MANAGED", then `bad-host-code` must
-    not be set to 0.  If `lb-scheme` is set to "EXTERNAL", then either
-    `bad-host-backend` or `bad-host-host` must be set (not to "") and, in
-    this case, the request will not be rejected by the URL Map (but it
-    will not be forwarded to your main Backend).
+    not be set to 0 (or `bad-host-backend` must not be "").  If `lb-scheme`
+    is set to "EXTERNAL", then either `bad-host-backend` or `bad-host-host`
+    must be set (not to "").
 
     You can set this when `lb-scheme` is "" but it will not have any impact
     in that case.  Other than that, if you set this when it cannot work, then
@@ -647,11 +646,10 @@ variable "bad-host-code" {
 
 variable "bad-host-backend" {
   description   = <<-EOD
-    When `lb-scheme` is "EXTERNAL" (and `url-map-ref` is ""), then the
-    created URL Map can forward requests for unlisted hostnames to a
-    different Backend Service (perhaps one that just rejects all requests).
-    For this to happen, you must set `bad-host-backend` to the `.id` of
-    this alternate Backend Service.
+    When `url-map-ref` is "", the created URL Map can forward requests
+    for unlisted hostnames to a different Backend Service (perhaps one
+    that just rejects all requests).  For this to happen, you must set
+    `bad-host-backend` to the `.id` of this alternate Backend Service.
 
     Example: bad-host-backend = google_compute_backend_service.reject.id
   EOD

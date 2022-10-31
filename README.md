@@ -138,7 +138,7 @@ creates the DNS records for your hostnames.
       neg-name          = "my-svc"
       map-name          = "my-svc"
       hostnames         = [ "honeypot", "svc" ]
-      reject-honeypot   = true
+      exclude-honeypot  = true
       dns-zone-ref      = "my-zone"
       dns-add-hosts     = true
     }
@@ -148,7 +148,7 @@ benefits including a "honeypot" hostname, a certificate for which will be
 given to hackers that hit your load balancer IP address using HTTPS but
 with some random hostname.  This prevents the hackers from trivially being
 able to discover the hostname to use for further scanning/attack attempts.
-And `reject-honeypot` means requests that use the honeypot hostname will
+And `exclude-honeypot` means requests that use the honeypot hostname will
 not even be routed to your Workload.
 
 The [certificate-map-simple module](
@@ -202,7 +202,7 @@ arises.
         "github.com/TyeMcQueen/terraform-google-http-ingress" )
       name-prefix       = "my-svc-"
       hostnames         = [ "honeypot", "svc" ]
-      reject-honeypot   = true
+      exclude-honeypot  = true
       dns-zone-ref      = "my-zone"
       dns-add-hosts     = true
       backend-ref       = module.my-backend.backend.id
@@ -227,7 +227,7 @@ hostname).
         "honeypot.my-product.example.com|LB",
         "my-svc.my-product.example.com|LB",
       ]
-      reject-honeypot   = true
+      exclude-honeypot  = true
     }
 
 This way you lose some minor resiliency benefits of using DNS-authorized
@@ -358,11 +358,11 @@ that were not available in earlier versions.
 
 ## Input Variables
 
-* [bad-host-backend](/variables.tf#L586)
-* [bad-host-code](/variables.tf#L567)
-* [bad-host-host](/variables.tf#L600)
-* [bad-host-path](/variables.tf#L615)
-* [bad-host-redir](/variables.tf#L633)
+* [bad-host-backend](/variables.tf#L647)
+* [bad-host-code](/variables.tf#L628)
+* [bad-host-host](/variables.tf#L660)
+* [bad-host-path](/variables.tf#L675)
+* [bad-host-redir](/variables.tf#L693)
 * [cert-map-ref](/variables.tf#L235)
 * [cluster-objects](/variables.tf#L40)
 * [clusters](/variables.tf#L27)
@@ -371,13 +371,16 @@ that were not available in earlier versions.
 * [dns-add-hosts](/variables.tf#L383)
 * [dns-ttl-secs](/variables.tf#L392)
 * [dns-zone-ref](/variables.tf#L166)
+* [exclude-honeypot](/variables.tf#L608)
 * [health-interval-secs](/variables.tf#L412)
 * [health-path](/variables.tf#L403)
 * [health-ref](/variables.tf#L200)
 * [health-timeout-secs](/variables.tf#L422)
 * [healthy-threshold](/variables.tf#L443)
 * [hostnames](/variables.tf#L53)
-* [http-redir-code](/variables.tf#L523)
+* [http-redir-code](/variables.tf#L585)
+* [iap-id](/variables.tf#L527)
+* [iap-secret](/variables.tf#L538)
 * [ip-addr-ref](/variables.tf#L215)
 * [ip-is-shared](/variables.tf#L367)
 * [labels](/variables.tf#L351)
@@ -390,8 +393,10 @@ that were not available in earlier versions.
 * [name-prefix](/variables.tf#L327)
 * [neg-name](/variables.tf#L5)
 * [project](/variables.tf#L314)
-* [quic-override](/variables.tf#L489)
-* [redirect-http](/variables.tf#L511)
-* [reject-honeypot](/variables.tf#L546)
+* [quic-override](/variables.tf#L551)
+* [redirect-http](/variables.tf#L573)
+* [security-policy](/variables.tf#L502)
+* [session-affinity](/variables.tf#L512)
+* [timeout-secs](/variables.tf#L486)
 * [unhealthy-threshold](/variables.tf#L432)
 * [url-map-ref](/variables.tf#L289)

@@ -70,6 +70,6 @@ module "ingress" {
   project               = var.project
   quic-override         = var.quic-override
   redirect-http         = var.redirect-http
-  reject-honeypot       = var.reject-honeypot
+  exclude-honeypot      = var.exclude-honeypot
   url-map-ref           = var.url-map-ref
 }
