@@ -18,7 +18,7 @@ locals {
 
 module "backend" {
   source                = (
-    "github.com/TyeMcQueen/terraform-google-backend-to-gke" )
+    "github.com/Unity-Technologies/terraform-google-backend-to-gke-internal" )
   cluster-objects       = var.cluster-objects
   clusters              = var.clusters
   description           = var.description
@@ -43,7 +43,7 @@ module "backend" {
 
 module "ingress" {
   source                = (
-    "github.com/TyeMcQueen/terraform-google-http-ingress" )
+    "github.com/Unity-Technologies/terraform-google-http-ingress-internal" )
   backend-ref           = (
     0 < length(module.backend.backend) ? module.backend.backend[0].id : "" )
   bad-host-backend      = var.bad-host-backend
